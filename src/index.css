@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-grotesque: "Bricolage Grotesque", "sans-serif";
+  --font-dmsans: "DM Sans", "sans-serif";
+  --color-Neutral-900: #03012d;
+  --color-Neutral-800: #272541;
+  --color-Neutral-700: #312f4b;
+  --color-Neutral-600: #3d3b5e;
+  --color-Neutral-300: #aeaeb7;
+  --color-Neutral-200: #d5d4d9;
+  --color-Neutral-0: #fff;
+  --color-Orange-500: #ff7c0a;
+  --color-Blue-500: #4455da;
+  --color-Blue-700: #2d1c9c;
+}
