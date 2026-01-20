@@ -3,28 +3,13 @@ import { Logo } from "../icons/Logo";
 import { Settings } from "../icons/Settings";
 import { Check } from "../icons/Check";
 
-export const Header = () => {
-  const [activeMenu, setActiveMenu] = useState(false);
-  const [tempType, setTempType] = useState<"Celsius" | "Fahrenheit">("Celsius");
-  const [windType, setWindType] = useState<"km/h" | "mph">("km/h");
-  const [precipitationType, setPrecipitationType] = useState<"mm" | "in">("mm");
-  const [currentSystem, setCurrentSystem] = useState<"metric" | "imperial">(
-    "metric"
-  );
+type HeaderProps = {
+  units: string;
+  handleSwitch: () => void;
+};
 
-  const handleSwitch = () => {
-    if (currentSystem == "metric") {
-      setPrecipitationType("in");
-      setTempType("Fahrenheit");
-      setWindType("mph");
-      setCurrentSystem("imperial");
-    } else {
-      setPrecipitationType("mm");
-      setTempType("Celsius");
-      setWindType("km/h");
-      setCurrentSystem("metric");
-    }
-  };
+export const Header = ({ units, handleSwitch }: HeaderProps) => {
+  const [activeMenu, setActiveMenu] = useState(false);
 
   return (
     <header className="flex justify-between items-center w-full">
@@ -33,7 +18,7 @@ export const Header = () => {
       <div className="relative">
         <button
           onClick={() => setActiveMenu(!activeMenu)}
-          className="flex items-center gap-2 px-3 py-2 bg-Neutral-700 rounded-md"
+          className="flex items-center gap-2 px-3 py-2 bg-Neutral-700 rounded-md hover:cursor-pointer"
         >
           <Settings />
           <p className="text-center font-grotesque font-medium text-sm">
@@ -55,37 +40,33 @@ export const Header = () => {
 
         {/* dropdown menu */}
         {activeMenu && (
-          <div className="absolute right-0 mt-2 px-2 py-3 rounded-xl bg-Neutral-700 min-w-50 border border-Neutral-600 transition">
+          <div className="absolute right-0 z-20 mt-2 px-2 py-3 rounded-xl bg-Neutral-700 min-w-50 border border-Neutral-600 transition">
             <button
               onClick={() => handleSwitch()}
               className="w-full text-left rounded-md p-2 font-semibold text-sm font-dmsans transition hover:bg-Neutral-600 focus:outline-none focus:ring-2 focus:ring-white"
             >
-              {currentSystem == "metric"
-                ? "Switch to Imperial"
-                : "Switch to Metric"}
+              {units == "metric" ? "Switch to Imperial" : "Switch to Metric"}
             </button>
 
-            <fieldset className="mt-3 pb-1 flex flex-col border-b border-b-Neutral-600">
+            <fieldset className="mt-2 pb-1 flex flex-col border-b border-b-Neutral-600">
               <legend className="text-[#a1a1a1] pl-2 text-xs font-medium font-dmsans mb-2">
                 Temperature
               </legend>
               <button
-                onClick={() => setTempType("Celsius")}
                 className={`${
-                  tempType == "Celsius" && "bg-Neutral-600"
+                  units == "metric" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 Celsius (°C)
-                {tempType == "Celsius" && <Check />}
+                {units == "metric" && <Check />}
               </button>
               <button
-                onClick={() => setTempType("Fahrenheit")}
                 className={`${
-                  tempType == "Fahrenheit" && "bg-Neutral-600"
+                  units == "imperial" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 Fahrenheit (°F)
-                {tempType == "Fahrenheit" && <Check />}
+                {units == "imperial" && <Check />}
               </button>
             </fieldset>
 
@@ -94,22 +75,20 @@ export const Header = () => {
                 Wind Speed
               </legend>
               <button
-                onClick={() => setWindType("km/h")}
                 className={`${
-                  windType == "km/h" && "bg-Neutral-600"
+                  units == "metric" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 km/h
-                {windType == "km/h" && <Check />}
+                {units == "metric" && <Check />}
               </button>
               <button
-                onClick={() => setWindType("mph")}
                 className={`${
-                  windType == "mph" && "bg-Neutral-600"
+                  units == "imperial" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 mph
-                {windType == "mph" && <Check />}
+                {units == "imperial" && <Check />}
               </button>
             </fieldset>
 
@@ -118,22 +97,20 @@ export const Header = () => {
                 Precipitation
               </legend>
               <button
-                onClick={() => setPrecipitationType("mm")}
                 className={`${
-                  precipitationType == "mm" && "bg-Neutral-600"
+                  units == "metric" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 Millimeters (mm)
-                {precipitationType == "mm" && <Check />}
+                {units == "metric" && <Check />}
               </button>
               <button
-                onClick={() => setPrecipitationType("in")}
                 className={`${
-                  precipitationType == "in" && "bg-Neutral-600"
+                  units == "imperial" && "bg-Neutral-600"
                 } w-full py-1.5 px-2 rounded-md font-semibold transition flex justify-between items-center`}
               >
                 Inches (in)
-                {precipitationType == "in" && <Check />}
+                {units == "imperial" && <Check />}
               </button>
             </fieldset>
           </div>
