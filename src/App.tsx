@@ -360,7 +360,7 @@ function App() {
                 </div>
               </section>
 
-              <section className="col-span-2 row-span-2 row-start-5 col-start-1 rounded-3xl flex flex-col gap-3 pt-1 mt-3 font-dmsans">
+              <section className="col-span-2 row-span-2 row-start-5 col-start-1 rounded-3xl flex flex-col gap-3 pt-1 mt-3 md:mt-0 font-dmsans">
                 <h3 className="font-bold">Daily forecast</h3>
                 <ul className="grid grid-cols-3 md:flex gap-4 md:gap-2 h-full">
                   {weather.daily.time.map((time, index) => (
