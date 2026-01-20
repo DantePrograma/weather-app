@@ -301,12 +301,12 @@ function App() {
                 <div className="h-full w-full grid grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-3 gap-4 md:gap-5">
                   <header className="col-span-2 row-span-2 md:col-span-4 md:row-span-2 bg-[url(./assets/images/bg-today-large.svg)] bg-no-repeat bg-cover bg-center flex items-center md:justify-between justify-center flex-col md:flex-row px-5 rounded-2xl">
                     <div>
-                      <h1 className="text-3xl font-bold">
+                      <h1 className="text-3xl font-bold text-center">
                         {selectedCity?.name}
                         {selectedCity?.country != "" && ", "}
                         {selectedCity?.country}
                       </h1>
-                      <p className="font-medium">{prettyDate}</p>
+                      <p className="font-medium text-center">{prettyDate}</p>
                     </div>
                     <div className="flex items-center gap-1">
                       <img
